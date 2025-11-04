@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Canvas Asteroids</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- jQuery (avec migrate) -->
+  <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+  <script src="https://code.jquery.com/jquery-migrate-1.4.1.min.js"></script>
+  <style>
+    html, body { margin:0; background:#000; color:#fff; }
+    #wrap { display:flex; height:100vh; align-items:center; justify-content:center; }
+    #canvas { background:#000; border:1px solid #333; width:800px; height:600px; }
+    .hint { position:fixed; bottom:10px; left:10px; font:14px/1.4 monospace; color:#9f9; }
+  </style>
+</head>
+<body>
+  <div id="wrap">
+    <canvas id="canvas" width="800" height="600"></canvas>
+  </div>
+
+  <div class="hint">
+    Controls: ← → rotate, ↑ thrust, SPACE shoot, P pause, M mute, G grid
+  </div>
+
+  <!-- Police vectorielle pour le texte -->
+  <script src="vector_battle.js"></script>
+  <script>
+    // Si la police est chargée et que Text existe déjà, on l’assigne.
+    // Sinon, asteroids.js pourra lire __VECTOR_FACE__ au démarrage.
+    window.__VECTOR_FACE__ = window.vector_battle || null;
+    window.addEventListener('load', function () {
+      if (window.vector_battle && window.Text) {
+        Text.face = window.vector_battle;
+      }
+    });
+  </script>
+
+  <!-- Code du jeu -->
+  <script src="asteroids.js"></script>
+</body>
+</html>
